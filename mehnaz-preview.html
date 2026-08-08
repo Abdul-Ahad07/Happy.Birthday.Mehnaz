@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mehnaz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFFBF7;
+  --blush:#FFD6E8;
+  --pink:#FF8FAB;
+  --lavender:#C9A7EB;
+  --deep:#6B3FA0;
+  --gold:#FFD166;
+  --blue:#5B8DEF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{
+  height:100%;
+  width:100%;
+  overflow:hidden;
+  font-family:'Quicksand',sans-serif;
+  background:var(--cream);
+}
+button{font-family:inherit;}
+
+/* ---------- LOCK SCREEN ---------- */
+#lockScreen{
+  position:fixed;
+  inset:0;
+  background:var(--cream);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  z-index:10;
+  transition:opacity 1.4s ease, transform 1.4s ease, filter 1.4s ease;
+}
+#lockScreen.hide{
+  opacity:0;
+  transform:scale(1.08);
+  filter:blur(10px);
+  pointer-events:none;
+}
+.lock-hint{
+  font-size:14px;
+  color:#999;
+  letter-spacing:.3px;
+}
+#unlockBtn{
+  background:var(--blue);
+  color:#fff;
+  border:none;
+  padding:11px 30px;
+  border-radius:30px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+#unlockBtn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 18px rgba(91,141,239,.35);
+}
+#unlockBtn:focus-visible{
+  outline:3px solid var(--blue);
+  outline-offset:2px;
+}
+
+/* ---------- REVEAL SCREEN ---------- */
+#revealScreen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(160deg, var(--blush) 0%, var(--lavender) 55%, #E8CFF3 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transform:scale(.94);
+  transition:opacity 1.6s ease, transform 1.6s ease;
+  z-index:5;
+  overflow:hidden;
+}
+#revealScreen.show{
+  opacity:1;
+  transform:scale(1);
+}
+
+.hearts-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.heart{
+  position:absolute;
+  top:-40px;
+  font-size:20px;
+  opacity:.85;
+  animation:fall linear infinite;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.06));
+}
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(110vh) rotate(30deg);}
+}
+
+.card{
+  position:relative;
+  z-index:2;
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-radius:28px;
+  padding:44px 32px;
+  width:min(88vw, 480px);
+  text-align:center;
+  box-shadow:0 20px 50px rgba(107,63,160,.18);
+  opacity:0;
+  transform:translateY(18px) scale(.97);
+  animation:cardIn 1.4s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay:.5s;
+}
+@keyframes cardIn{
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+
+.title{
+  font-family:'Fredoka',sans-serif;
+  font-size:26px;
+  font-weight:600;
+  color:var(--deep);
+  margin-bottom:6px;
+}
+.subtitle{
+  font-size:13px;
+  color:#8a5fa8;
+  margin-bottom:26px;
+  letter-spacing:.4px;
+}
+
+#textStage{
+  min-height:130px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.msg-line{
+  font-size:16px;
+  line-height:1.7;
+  color:#4a3a5c;
+  font-weight:500;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity 1s ease, transform 1s ease;
+}
+.msg-line.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.signature{
+  margin-top:22px;
+  font-family:'Fredoka',sans-serif;
+  color:var(--pink);
+  font-size:15px;
+  opacity:0;
+  transition:opacity 1.2s ease;
+}
+.signature.show{opacity:1;}
+
+@media (max-width:420px){
+  .card{padding:34px 22px;}
+  .title{font-size:22px;}
+  .msg-line{font-size:14.5px;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  #lockScreen, #revealScreen, .card, .msg-line, .signature{transition:none !important; animation:none !important;}
+  .heart{animation:none !important; display:none;}
+}
+</style>
+</head>
+<body>
+
+  <!-- LOCK SCREEN (preview: no code needed) -->
+  <div id="lockScreen">
+    <div class="lock-hint">Preview mode 🎁</div>
+    <button id="unlockBtn">Unlock</button>
+  </div>
+
+  <!-- REVEAL SCREEN -->
+  <div id="revealScreen">
+    <div class="hearts-layer" id="heartsLayer"></div>
+    <div class="card">
+      <div class="title">Happy Birthday, Mehnaz 🎂</div>
+      <div class="subtitle">from your brother, Abdul Ahad</div>
+      <div id="textStage"></div>
+
+      <div id="messageLines" hidden>
+        <p>Happy Birthday, meri pyari behen. 🎂</p>
+        <p>Aaj ka din itna khaas hai ke main isay yun hi guzarne nahi de sakta tha bina yeh bataye ke aap meray liye kitni matter karti hain.</p>
+        <p>Humein ek dusre ko jaante huay bhale hi sirf kuch mahine huay hain, lekin sach mein aisa lagta hai jaise aap saalon se meri behen hain.</p>
+        <p>Kuch rishtay time se nahi napay jatay, wo is se napay jatay hain ke koi banda apka dil ban k kitni baar apke liye khara hota hai, aur aap har baar khari rahi hain. 🌸</p>
+        <p>Yaad hai humari mulaqat kaisay hui thi. Bas do log jo WhatsApp pe kaam ki wajah se connect huay, shuru mein sirf ek professional baat cheet.</p>
+        <p>Lekin phir aap uss se kahin zyada ban gayeen. Shuru se hi jis tarah aap ne meri care karna shuru kiya, wo aisi cheez thi jiski mujhe umeed nahi thi.</p>
+        <p>Yeh aisa nahi tha ke aapko karna zaroori tha, phir bhi aap ne yeh sachche dil se kiya, bina koi shor machaye, sirf isliye ke aap aisi hi hain.</p>
+        <p>Sach kahun to shayad aapko khud bhi andaza nahi ke aisi kindness kitni rare hoti hai.</p>
+        <p>Log baatein karte hain ek dusre ke sath khara hone ki, lekin aap ne wo waqai kiya, khamoshi se, sacchay dil se, jaisay yeh ek behen ke liye sab se normal si baat ho.</p>
+        <p>Aur yehi aap meray liye ban gayi hain, sirf naam ki muu boli sis nahi, balkay har maine mein ek asli behen. 🦋</p>
+        <p>Meri dua hai ke yeh birthday aapko utni hi khushiyan de jitni aap ne dusron ko di hain, balkay us se bhi zyada.</p>
+        <p>Allah aapko sehat, sukoon, kamyabi, aur aise logon se nawaze jo aapki utni hi care karein jitni aap sab ki karti hain.</p>
+        <p>Har wo dua qubool ho jo aap ne kabhi khamoshi se maangi ho, aur zindagi ka yeh naya saal kam stress, zyada hansi, aur achi khabron se bhara ho. ✨</p>
+        <p>Shukriya ke aap aisi behen hain jo logon ki care karti hain bina kuch wapis maange.</p>
+        <p>Shukriya support k liye, aur ek work connection ko asli rishtay mein badalnay k liye.</p>
+        <p>Umeed hai main bhi kabhi aapke liye waisay hi khara ho sakun jaisay aap meray liye khari rahi hain.</p>
+        <p>Ek baar phir Happy Birthday, Mehnaz. Blessed rahiye, caring rahiye, aur bilkul waisi hi rahiye jaisi hain, kyunke duniya ko aap jaisay logon ki zaroorat hai. 🎀</p>
+      </div>
+
+      <div class="signature" id="signature">Dil se,<br>Aapka bhai,<br>Abdul Ahad 🎀</div>
+    </div>
+  </div>
+
+<script>
+  const lockScreen = document.getElementById('lockScreen');
+  const revealScreen = document.getElementById('revealScreen');
+  const unlockBtn = document.getElementById('unlockBtn');
+  const heartsLayer = document.getElementById('heartsLayer');
+  const textStage = document.getElementById('textStage');
+  const signature = document.getElementById('signature');
+
+  unlockBtn.addEventListener('click', unlock);
+
+  function unlock(){
+    lockScreen.classList.add('hide');
+    setTimeout(() => {
+      lockScreen.style.display = 'none';
+      revealScreen.classList.add('show');
+      startHearts();
+      startMessage();
+    }, 1300);
+  }
+
+  // ---------- FALLING HEARTS ----------
+  const heartEmojis = ['💗','💕','🌸','💖','🌷'];
+  function spawnHeart(){
+    const el = document.createElement('div');
+    el.className = 'heart';
+    el.textContent = heartEmojis[Math.floor(Math.random()*heartEmojis.length)];
+    el.style.left = Math.random()*100 + 'vw';
+    const duration = 6 + Math.random()*6;
+    el.style.animationDuration = duration + 's';
+    el.style.fontSize = (14 + Math.random()*14) + 'px';
+    heartsLayer.appendChild(el);
+    setTimeout(() => el.remove(), duration*1000 + 200);
+  }
+  let heartInterval;
+  function startHearts(){
+    spawnHeart();
+    heartInterval = setInterval(spawnHeart, 380);
+  }
+
+  // ---------- MESSAGE SEQUENCE ----------
+  const lines = Array.from(document.querySelectorAll('#messageLines p')).map(p => p.textContent);
+
+  let idx = 0;
+  function startMessage(){
+    showLine();
+  }
+  function showLine(){
+    const div = document.createElement('div');
+    div.className = 'msg-line';
+    div.textContent = lines[idx];
+    textStage.innerHTML = '';
+    textStage.appendChild(div);
+    requestAnimationFrame(() => div.classList.add('active'));
+
+    const isLast = idx === lines.length - 1;
+    if(isLast){
+      setTimeout(() => signature.classList.add('show'), 1400);
+      return;
+    }
+    setTimeout(() => {
+      div.classList.remove('active');
+      setTimeout(() => {
+        idx++;
+        showLine();
+      }, 900);
+    }, 4200);
+  }
+</script>
+</body>
+</html>
