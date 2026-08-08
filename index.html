@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mehnaz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LOCK SCREEN -->
+  <div id="lockScreen">
+    <div class="lock-hint">Enter the date to unlock 🎁</div>
+    <input id="dateInput" type="text" placeholder="xx/xx" maxlength="5" aria-label="Enter date in DD/MM format">
+    <button id="unlockBtn">Unlock</button>
+    <div id="lockMsg"></div>
+  </div>
+
+  <!-- REVEAL SCREEN -->
+  <div id="revealScreen">
+    <div class="hearts-layer" id="heartsLayer"></div>
+    <div class="card">
+      <div class="title">Happy Birthday, Mehnaz 🎂</div>
+      <div class="subtitle">from your brother, Abdul Ahad</div>
+      <div id="textStage"></div>
+
+      <!-- Message text lives here — script.js reads these lines one by one -->
+      <div id="messageLines" hidden>
+        <p>Happy Birthday, meri pyari behen. 🎂</p>
+        <p>Aaj ka din itna khaas hai ke main isay yun hi guzarne nahi de sakta tha bina yeh bataye ke aap meray liye kitni matter karti hain.</p>
+        <p>Humein ek dusre ko jaante huay bhale hi sirf kuch mahine huay hain, lekin sach mein aisa lagta hai jaise aap saalon se meri behen hain.</p>
+        <p>Kuch rishtay time se nahi napay jatay, wo is se napay jatay hain ke koi banda apka dil ban k kitni baar apke liye khara hota hai, aur aap har baar khari rahi hain. 🌸</p>
+        <p>Yaad hai humari mulaqat kaisay hui thi. Bas do log jo WhatsApp pe kaam ki wajah se connect huay, shuru mein sirf ek professional baat cheet.</p>
+        <p>Lekin phir aap uss se kahin zyada ban gayeen. Shuru se hi jis tarah aap ne meri care karna shuru kiya, wo aisi cheez thi jiski mujhe umeed nahi thi.</p>
+        <p>Yeh aisa nahi tha ke aapko karna zaroori tha, phir bhi aap ne yeh sachche dil se kiya, bina koi shor machaye, sirf isliye ke aap aisi hi hain.</p>
+        <p>Sach kahun to shayad aapko khud bhi andaza nahi ke aisi kindness kitni rare hoti hai.</p>
+        <p>Log baatein karte hain ek dusre ke sath khara hone ki, lekin aap ne wo waqai kiya, khamoshi se, sacchay dil se, jaisay yeh ek behen ke liye sab se normal si baat ho.</p>
+        <p>Aur yehi aap meray liye ban gayi hain, sirf naam ki muu boli sis nahi, balkay har maine mein ek asli behen. 🦋</p>
+        <p>Meri dua hai ke yeh birthday aapko utni hi khushiyan de jitni aap ne dusron ko di hain, balkay us se bhi zyada.</p>
+        <p>Allah aapko sehat, sukoon, kamyabi, aur aise logon se nawaze jo aapki utni hi care karein jitni aap sab ki karti hain.</p>
+        <p>Har wo dua qubool ho jo aap ne kabhi khamoshi se maangi ho, aur zindagi ka yeh naya saal kam stress, zyada hansi, aur achi khabron se bhara ho. ✨</p>
+        <p>Shukriya ke aap aisi behen hain jo logon ki care karti hain bina kuch wapis maange.</p>
+        <p>Shukriya support k liye, aur ek work connection ko asli rishtay mein badalnay k liye.</p>
+        <p>Umeed hai main bhi kabhi aapke liye waisay hi khara ho sakun jaisay aap meray liye khari rahi hain.</p>
+        <p>Ek baar phir Happy Birthday, Mehnaz. Blessed rahiye, caring rahiye, aur bilkul waisi hi rahiye jaisi hain, kyunke duniya ko aap jaisay logon ki zaroorat hai. 🎀</p>
+      </div>
+
+      <div class="signature" id="signature">Dil se,<br>Aapka bhai,<br>Abdul Ahad 🎀</div>
+    </div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
